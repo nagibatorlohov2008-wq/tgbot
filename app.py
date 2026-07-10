@@ -231,19 +231,21 @@ def send_message(chat_id, text, reply_markup=None, parse_mode="Markdown"):
 
 def get_updates(offset=None):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
-    params = {"timeout": 30, "allowed_updates": ["message"]}
+    params = {"timeout": 5, "allowed_updates": ["message"]}  # ИЗМЕНЕНО: 30 -> 5
     if offset:
         params["offset"] = offset
     try:
-        r = requests.get(url, params=params, timeout=35)
+        r = requests.get(url, params=params, timeout=10)  # ИЗМЕНЕНО: 35 -> 10
         return r.json().get("result", [])
     except:
         return []
 
 def poll():
+    print("Telegram bot polling started!")  # ДОБАВЛЕНО
     offset = None
     while True:
         try:
+            print("Polling cycle...")  # ДОБАВЛЕНО
             updates = get_updates(offset)
             for update in updates:
                 if "message" in update:
