@@ -5,6 +5,7 @@ import json
 import time
 import threading
 import re
+import sys  # <-- ЭТО ДОБАВЛЕНО
 
 app = Flask(__name__)
 
@@ -361,6 +362,13 @@ def poll():
 @app.route('/')
 def home():
     return "Bot is alive! (polling mode)", 200
+
+# ===== ЭТО ДОБАВЛЕНО (Welcome to UptimeRobot + /restart) =====
+@app.route('/restart')
+def restart():
+    print("Welcome to UptimeRobot — перезапуск")
+    sys.exit(0)
+# ===== КОНЕЦ ДОБАВЛЕНИЯ =====
 
 if __name__ == "__main__":
     threading.Thread(target=poll, daemon=True).start()
