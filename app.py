@@ -5,7 +5,7 @@ import json
 import time
 import threading
 import re
-import sys  # <-- ЭТО ДОБАВЛЕНО
+import sys
 
 app = Flask(__name__)
 
@@ -363,14 +363,23 @@ def poll():
 def home():
     return "Bot is alive! (polling mode)", 200
 
-# ===== ЭТО ДОБАВЛЕНО (Welcome to UptimeRobot + /restart) =====
 @app.route('/restart')
 def restart():
     print("Welcome to UptimeRobot — перезапуск")
     sys.exit(0)
-# ===== КОНЕЦ ДОБАВЛЕНИЯ =====
 
+# ===== ЗАПУСК ТЕЛЕГРАМ БОТА =====
+def run_bot():
+    print("Запускаю телеграм-бота...")
+    poll()
+
+# ===== ЗАПУСК ВСЕГО =====
 if __name__ == "__main__":
-    threading.Thread(target=poll, daemon=True).start()
+    # Запускаем телеграм-бота в отдельном потоке
+    bot_thread = threading.Thread(target=run_bot)
+    bot_thread.daemon = True
+    bot_thread.start()
+    
+    # Запускаем Flask
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
