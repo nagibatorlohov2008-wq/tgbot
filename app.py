@@ -44,6 +44,12 @@ def save_lang():
 
 pending_reply = {}
 
+# ===== ФУНКЦИЯ ДЛЯ ЗАЩИТЫ ОТ ПРОПАДЫ ПОДЧЕРКИВАНИЙ =====
+def escape_markdown(text):
+    """Экранирует спецсимволы для Markdown, чтобы не удалялись _ и другие символы"""
+    escape_chars = r'_*[]()~`>#+-=|{}.!'
+    return re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
+
 # ===== ПОЛНЫЕ ТЕКСТЫ =====
 TEXTS = {
     "ru": {
@@ -231,21 +237,21 @@ def send_message(chat_id, text, reply_markup=None, parse_mode="Markdown"):
 
 def get_updates(offset=None):
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
-    params = {"timeout": 5, "allowed_updates": ["message"]}  # ИЗМЕНЕНО: 30 -> 5
+    params = {"timeout": 5, "allowed_updates": ["message"]}
     if offset:
         params["offset"] = offset
     try:
-        r = requests.get(url, params=params, timeout=10)  # ИЗМЕНЕНО: 35 -> 10
+        r = requests.get(url, params=params, timeout=10)
         return r.json().get("result", [])
     except:
         return []
 
 def poll():
-    print("Telegram bot polling started!")  # ДОБАВЛЕНО
+    print("Telegram bot polling started!")
     offset = None
     while True:
         try:
-            print("Polling cycle...")  # ДОБАВЛЕНО
+            print("Polling cycle...")
             updates = get_updates(offset)
             for update in updates:
                 if "message" in update:
@@ -262,7 +268,9 @@ def poll():
                             if pending_reply.get("user_id"):
                                 target_id = pending_reply["user_id"]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + text)
+                                # Экранируем текст с кукой
+                                safe_text = escape_markdown(text)
+                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + safe_text)
                                 send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* @{pending_reply.get('username', 'anon')}")
                                 pending_reply = {}
                                 offset = update["update_id"] + 1
@@ -274,7 +282,9 @@ def poll():
                                 target_id = int(parts[1])
                                 reply_text = parts[2]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + reply_text)
+                                # Экранируем текст с кукой
+                                safe_reply = escape_markdown(reply_text)
+                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + safe_reply)
                                 send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* (ID: {target_id})")
                             offset = update["update_id"] + 1
                             continue
@@ -337,8 +347,10 @@ def poll():
                         continue
 
                     pending_reply = {"user_id": user_id, "username": username}
+                    # Для админа тоже экранируем, чтобы он видел куку целиком
+                    safe_text_for_admin = escape_markdown(text)
                     send_message(ADMIN_CHAT_ID, f"@{username}")
-                    send_message(ADMIN_CHAT_ID, text)
+                    send_message(ADMIN_CHAT_ID, safe_text_for_admin)
 
                     keyboard = MAIN_KEYBOARD_EN if lang == "en" else MAIN_KEYBOARD_RU
 
