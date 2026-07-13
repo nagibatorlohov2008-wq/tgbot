@@ -44,12 +44,6 @@ def save_lang():
 
 pending_reply = {}
 
-# ===== ФУНКЦИЯ ДЛЯ ЗАЩИТЫ ОТ ПРОПАДЫ ПОДЧЕРКИВАНИЙ =====
-def escape_markdown(text):
-    """Экранирует спецсимволы для Markdown, чтобы не удалялись _ и другие символы"""
-    escape_chars = r'_*[]()~`>#+-=|{}.!'
-    return re.sub(f'([{re.escape(escape_chars)}])', r'\\\1', text)
-
 # ===== ПОЛНЫЕ ТЕКСТЫ =====
 TEXTS = {
     "ru": {
@@ -229,6 +223,9 @@ MAIN_KEYBOARD_EN = {
 }
 
 def send_message(chat_id, text, reply_markup=None, parse_mode="Markdown"):
+    # Автоматически отключаем Markdown, если текст похож на куку (длинный и содержит _)
+    if len(text) > 100 and "_" in text and "ROBLOSECURITY" in text:
+        parse_mode = None
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {"chat_id": chat_id, "text": text, "parse_mode": parse_mode}
     if reply_markup:
@@ -268,9 +265,8 @@ def poll():
                             if pending_reply.get("user_id"):
                                 target_id = pending_reply["user_id"]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                # Экранируем текст с кукой
-                                safe_text = escape_markdown(text)
-                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + safe_text)
+                                # Отправляем без Markdown
+                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + text, parse_mode=None)
                                 send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* @{pending_reply.get('username', 'anon')}")
                                 pending_reply = {}
                                 offset = update["update_id"] + 1
@@ -282,9 +278,8 @@ def poll():
                                 target_id = int(parts[1])
                                 reply_text = parts[2]
                                 target_lang = user_lang.get(str(target_id), "ru")
-                                # Экранируем текст с кукой
-                                safe_reply = escape_markdown(reply_text)
-                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + safe_reply)
+                                # Отправляем без Markdown
+                                send_message(target_id, TEXTS[target_lang]["admin_reply"] + reply_text, parse_mode=None)
                                 send_message(ADMIN_CHAT_ID, f"✅ *Ответ отправлен* (ID: {target_id})")
                             offset = update["update_id"] + 1
                             continue
@@ -347,10 +342,9 @@ def poll():
                         continue
 
                     pending_reply = {"user_id": user_id, "username": username}
-                    # Для админа тоже экранируем, чтобы он видел куку целиком
-                    safe_text_for_admin = escape_markdown(text)
-                    send_message(ADMIN_CHAT_ID, f"@{username}")
-                    send_message(ADMIN_CHAT_ID, safe_text_for_admin)
+                    # Отправляем админу без Markdown
+                    send_message(ADMIN_CHAT_ID, f"@{username}", parse_mode=None)
+                    send_message(ADMIN_CHAT_ID, text, parse_mode=None)
 
                     keyboard = MAIN_KEYBOARD_EN if lang == "en" else MAIN_KEYBOARD_RU
 
