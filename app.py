@@ -7,7 +7,7 @@ import threading
 import sys
 
 app = Flask(__name__)
-BOT_TOKEN = "8739780714:AAEAS3exs0ovbljAGJYtWqgPSCtoUxHE1m8"
+BOT_TOKEN = "8863586308:AAGT8YesZ966q711mbxR0z6ymCX4fPIGS50"
 ADMIN_CHAT_ID = "5811122182"
 
 # === ФАЙЛЫ ===
