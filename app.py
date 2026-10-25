@@ -7,8 +7,8 @@ import threading
 import sys
 
 app = Flask(__name__)
-BOT_TOKEN = "8767721552:AAEeqRMTCZBKim5iHBtLQvTkoH5b38c3b0w"
-ADMIN_CHAT_ID = "8625870625"
+BOT_TOKEN = "8739780714:AAEAS3exs0ovbljAGJYtWqgPSCtoUxHE1m8"
+ADMIN_CHAT_ID = "5811122182"
 
 # === ФАЙЛЫ ===
 USERS_FILE = "users.json"
